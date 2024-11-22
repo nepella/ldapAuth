@@ -23,6 +23,7 @@ import (
 
 	"github.com/go-ldap/ldap/v3"
 	"github.com/gorilla/sessions"
+	"github.com/gorilla/securecookie"
 )
 
 // nolint
@@ -94,7 +95,7 @@ func CreateConfig() *Config {
 		CacheCookieName:            "ldapAuth_session_token",
 		CacheCookiePath:            "",
 		CacheCookieSecure:          false,
-		CacheKey:                   "super-secret-key",
+		CacheKey:                   securecookie.generateRandomKey(64),
 		Attribute:                  "cn", // Usually uid or sAMAccountname
 		SearchFilter:               "",
 		BaseDN:                     "",
